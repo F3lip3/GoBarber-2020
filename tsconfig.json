@@ -18,7 +18,11 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "lib": ["es5", "es6", "es7"],
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@models/*": ["models/*"],
+      "@repositories/*": ["repositories/*"]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

@@ -1,23 +1,22 @@
 import { Router } from 'express';
-import { isEqual, parseISO, startOfHour } from 'date-fns';
-import { uuid } from 'uuidv4';
+import { parseISO, startOfHour } from 'date-fns';
 
-interface Appointment {
-  id: string;
-  provider: string;
-  date: Date;
-}
+import AppointmentsRepository from '@repositories/appointments.repository';
 
 const appointmentsRouter = Router();
-const appointments: Appointment[] = [];
+const appointmentsRepository = new AppointmentsRepository();
+
+appointmentsRouter.get('/', (request, response) => {
+  const appointments = appointmentsRepository.all();
+
+  return response.json(appointments);
+});
 
 appointmentsRouter.post('/', (request, response) => {
   const { provider, date } = request.body;
 
   const parsedDate = startOfHour(parseISO(date));
-  const appointmentBooked = appointments.some(appointment =>
-    isEqual(parsedDate, appointment.date)
-  );
+  const appointmentBooked = appointmentsRepository.findByDate(parsedDate);
 
   if (appointmentBooked) {
     return response.status(400).json({
@@ -25,13 +24,7 @@ appointmentsRouter.post('/', (request, response) => {
     });
   }
 
-  const appointment = {
-    id: uuid(),
-    provider,
-    date: parsedDate
-  };
-
-  appointments.push(appointment);
+  const appointment = appointmentsRepository.create(provider, parsedDate);
 
   return response.json(appointment);
 });
