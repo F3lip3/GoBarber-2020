@@ -30,8 +30,12 @@
     "import-helpers/order-imports": [
       "warn",
       {
-        "newlinesBetween": "always",
-        "groups": ["module", ["parent", "sibling", "index", "/~/", "/@/"]],
+        "newlinesBetween": "ignore",
+        "groups": [
+          "/^(express)/",
+          "module",
+          ["parent", "sibling", "index", "/~/", "/@/"]
+        ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ],
