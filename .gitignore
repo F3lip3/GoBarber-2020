@@ -1,3 +1,7 @@
 node_modules
 build
 yarn.lock
+temp
+
+tmp/*
+!tmp/.gitkeep
