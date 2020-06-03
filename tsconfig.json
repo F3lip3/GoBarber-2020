@@ -20,6 +20,8 @@
     "lib": ["es5", "es6", "es7"],
     "typeRoots": ["node_modules/@types"],
     "paths": {
+      "@config/*": ["config/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
       "@repositories/*": ["repositories/*"],
       "@services/*": ["services/*"]
