@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
 import authConfig from '@config/auth.config';
+import AppError from '@errors/app.error';
 import User from '@models/user.model';
 
 interface Request {
@@ -21,12 +22,12 @@ class CreateSessionService {
 
     const user = await userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new Error('Invalid email or password!');
+      throw new AppError('Invalid email or password!');
     }
 
     const passwordMatched = await compare(password, user.password);
     if (!passwordMatched) {
-      throw new Error('Invalid email or password!');
+      throw new AppError('Invalid email or password!');
     }
 
     const { secret, expiresIn } = authConfig.jwt;

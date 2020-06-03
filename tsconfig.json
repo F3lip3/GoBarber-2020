@@ -21,6 +21,7 @@
     "typeRoots": ["node_modules/@types"],
     "paths": {
       "@config/*": ["config/*"],
+      "@errors/*": ["errors/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
       "@repositories/*": ["repositories/*"],

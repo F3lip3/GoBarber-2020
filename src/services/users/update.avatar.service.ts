@@ -3,6 +3,7 @@ import path from 'path';
 import { getRepository } from 'typeorm';
 
 import uploadConfig from '@config/upload.config';
+import AppError from '@errors/app.error';
 import User from '@models/user.model';
 
 interface Request {
@@ -16,7 +17,7 @@ class UpdateUserAvatarService {
     const user = await userRepository.findOne(user_id);
 
     if (!user) {
-      throw new Error('You are not authenticated!');
+      throw new AppError('You are not authenticated!', 401);
     }
 
     if (user.avatar) {
