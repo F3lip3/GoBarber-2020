@@ -20,12 +20,9 @@
     "lib": ["es5", "es6", "es7"],
     "typeRoots": ["node_modules/@types"],
     "paths": {
+      "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
-      "@errors/*": ["errors/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@models/*": ["models/*"],
-      "@repositories/*": ["repositories/*"],
-      "@services/*": ["services/*"]
+      "@shared/*": ["shared/*"]
     }
   },
   "include": ["src/**/*.ts"],
