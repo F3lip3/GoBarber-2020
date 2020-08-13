@@ -1,11 +1,11 @@
 import { getRepository, Repository } from 'typeorm';
 
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
-import IAppointementRepository from '@modules/appointments/repositories/IAppointmentsRepository';
+import IAppointementsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 
 import Appointment from '../entities/Appointment';
 
-class AppointmentsRepository implements IAppointementRepository {
+class AppointmentsRepository implements IAppointementsRepository {
   private ormRepository: Repository<Appointment>;
 
   constructor() {
