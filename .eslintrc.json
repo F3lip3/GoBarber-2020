@@ -65,6 +65,7 @@
         "allow": ["error", "info", "time"]
       }
     ],
+    "no-useless-constructor": "off",
     "prettier/prettier": "error"
   },
   "settings": {
