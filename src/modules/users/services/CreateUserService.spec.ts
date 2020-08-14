@@ -37,6 +37,6 @@ describe('CreateUser', () => {
 
     await createUser.execute(userData);
 
-    expect(createUser.execute(userData)).rejects.toBeInstanceOf(AppError);
+    await expect(createUser.execute(userData)).rejects.toBeInstanceOf(AppError);
   });
 });

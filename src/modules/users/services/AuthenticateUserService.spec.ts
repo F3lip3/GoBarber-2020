@@ -46,7 +46,9 @@ describe('AuthenticateUser', () => {
       password: '123456'
     };
 
-    expect(authenticateUser.execute(userData)).rejects.toBeInstanceOf(AppError);
+    await expect(authenticateUser.execute(userData)).rejects.toBeInstanceOf(
+      AppError
+    );
   });
 
   it('should not be able to authenticate with invalid password', async () => {
@@ -69,7 +71,7 @@ describe('AuthenticateUser', () => {
       password: '123456'
     });
 
-    expect(
+    await expect(
       authenticateUser.execute({
         email: 'johndoe@example.com',
         password: '654321'
