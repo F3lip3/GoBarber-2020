@@ -4,21 +4,23 @@ import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import AuthenticateUser from './AuthenticateUserService';
 import CreateUserService from './CreateUserService';
 
+let authenticateUser: AuthenticateUser;
+let createUser: CreateUserService;
+
 describe('AuthenticateUser', () => {
-  it('should be able to authenticate', async () => {
+  beforeEach(() => {
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeHashProvider = new FakeHashProvider();
 
-    const authenticateUser = new AuthenticateUser(
+    authenticateUser = new AuthenticateUser(
       fakeUsersRepository,
       fakeHashProvider
     );
 
-    const createUser = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
+    createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider);
+  });
 
+  it('should be able to authenticate', async () => {
     const userData = {
       email: 'johndoe@example.com',
       password: '123456'
@@ -33,14 +35,6 @@ describe('AuthenticateUser', () => {
   });
 
   it('should not be able to authenticate with non existing user', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const authenticateUser = new AuthenticateUser(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
     const userData = {
       email: 'johndoe@example.com',
       password: '123456'
@@ -52,19 +46,6 @@ describe('AuthenticateUser', () => {
   });
 
   it('should not be able to authenticate with invalid password', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const authenticateUser = new AuthenticateUser(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
-    const createUser = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
     await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
