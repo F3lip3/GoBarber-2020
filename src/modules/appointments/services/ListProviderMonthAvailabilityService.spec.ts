@@ -47,7 +47,8 @@ describe('ListProviderMonthAvailability', () => {
 
     expect(availability).toEqual(
       expect.arrayContaining([
-        { day: 17, available: true },
+        { day: 16, available: false },
+        { day: 17, available: false },
         { day: 18, available: false },
         { day: 19, available: true },
         { day: 20, available: true }
