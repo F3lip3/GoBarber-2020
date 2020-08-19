@@ -18,6 +18,7 @@ describe('ListProviderMonthAvailability', () => {
 
   it('should be able to list the month availability', async () => {
     const provider_id = uuid();
+    const user_id = uuid();
 
     const fakes: Promise<Appointment>[] = [];
     // eslint-disable-next-line no-plusplus
@@ -25,6 +26,7 @@ describe('ListProviderMonthAvailability', () => {
       fakes.push(
         fakeAppointmentsRepository.create({
           provider_id,
+          user_id,
           date: new Date(2020, 7, 18, index, 0, 0)
         })
       );
@@ -33,6 +35,7 @@ describe('ListProviderMonthAvailability', () => {
 
     await fakeAppointmentsRepository.create({
       provider_id,
+      user_id,
       date: new Date(2020, 7, 19, 10, 0, 0)
     });
 
