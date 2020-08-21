@@ -44,7 +44,7 @@ class ListProviderMonthAvailabilityService {
 
     const currentDate = new Date(Date.now());
     const availability = daysInMonth.map(day => {
-      const compareDate = new Date(year, month - 1, day, 23);
+      const compareDate = new Date(year, month - 1, day, 17, 59);
       const appointmentsInDay = appointments.filter(
         appointment => getDate(appointment.date) === day
       );
