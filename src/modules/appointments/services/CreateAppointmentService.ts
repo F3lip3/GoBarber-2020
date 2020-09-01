@@ -49,7 +49,8 @@ class CreateAppointmentService {
     }
 
     const appointmentBooked = await this.appointmentsRepository.findByDate(
-      appointmentDate
+      appointmentDate,
+      provider_id
     );
     if (appointmentBooked) {
       throw new AppError('This appointment is already booked');
